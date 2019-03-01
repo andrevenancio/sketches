@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <style>
+            body {
+                margin: 0;
+                background-color: #000;
+            }
+            canvas {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <% if (htmlWebpackPlugin.options.capture) { %>
+            <style>
+                .capture {
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                }
+            </style>
+            <button id="capture" class="capture">Capture</button>
+            <script src="../capture/ccapture.all.min.js"></script>
+        <% } %>
+        <script src="<%= htmlWebpackPlugin.options.js %>"></script>
+    </body>
+</html>
