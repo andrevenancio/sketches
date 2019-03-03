@@ -3,7 +3,7 @@ import Sketch from 'app/sketches/crystalline/';
 let startTime;
 
 const init = () => {
-    const sketch = new Sketch(1, 720, 720);
+    const sketch = new Sketch(3, 720, 720);
 
     const capturer = new CCapture({
         verbose: false,

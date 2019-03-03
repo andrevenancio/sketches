@@ -34,6 +34,16 @@ module.exports = {
             app: PATH_SOURCE,
         },
     },
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    'file-loader',
+                ],
+            }
+        ],
+    },
     plugins: [
         new CleanWebpackPlugin([PATH_DIST], { verbose: false, root: process.cwd() }),
     ].concat(html),
