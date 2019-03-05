@@ -15,6 +15,9 @@ import {
     MeshStandardMaterial,
     PerspectiveCamera,
     PlaneGeometry,
+    PlaneBufferGeometry,
+    InstancedBufferAttribute,
+    InstancedBufferGeometry,
     Scene,
     ShaderMaterial,
     SphereGeometry,
@@ -22,11 +25,13 @@ import {
     Vector3,
     VertexColors,
     WebGLRenderer,
+    RawShaderMaterial,
 } from 'three';
 
 import OrbitControls from 'app/utils/orbit-controls';
 import Template from 'app/sketches/template';
 import skybox2 from 'app/shaders/skybox2';
+import texture from 'app/images/gloss.jpg';
 
 const settings = {
     turbidity: 6,
@@ -120,9 +125,15 @@ class Crystalline extends Template {
     }
 
     record(elapsedTime) {
-        // const time = (.001 * (performance.now() - elapsedTime)) % this.loop.duration;
-        // this.crystal.rotation.x = time * 2 * Math.PI / this.loop.duration;
-        // this.crystal.rotation.y = time * Math.PI / this.loop.duration;
+        const time = (.001 * (performance.now() - elapsedTime)) % this.loop.duration;
+
+        this.sphere.visible = false;
+        this.cubeCamera.update(this.renderer, this.scene);
+        this.sphere.visible = true;
+
+        this.sphere.rotation.x = time * 2 * Math.PI / this.loop.duration;
+        this.sphere.rotation.y = time * Math.PI / this.loop.duration;
+
         this.renderer.render(this.scene, this.camera);
     }
 }
